@@ -59,6 +59,9 @@ html { scroll-behavior: smooth; scroll-padding-top: 80px; }
   background: linear-gradient(115deg, var(--text) 35%, var(--primary) 72%, var(--accent));
   -webkit-background-clip: text; background-clip: text; color: transparent;
   padding-bottom: .08em;
+  /* Long single words (Swedish "nedladdningscenter") break at their soft hyphen, or anywhere as a last resort,
+     instead of running under the artwork. */
+  hyphens: manual; overflow-wrap: break-word;
 }
 .landing-lead { margin: 20px 0 30px; max-width: 34ch; font-size: clamp(1.05rem, 1.7vw, 1.25rem); color: var(--muted); }
 .cta-row { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 18px; }
