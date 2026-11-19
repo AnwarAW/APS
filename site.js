@@ -176,7 +176,8 @@ const TEXT = {
     step3Title: "Installera och kör", step3Text: "Öppna filen. Appens sida förklarar varje steg.",
     closingTitle: "Redo när du är",
     copyright: "© {year} Anwar Abdul Wahhab. Alla rättigheter förbehållna.",
-    center: "APS nedladdningscenter",
+    // ­: a soft hyphen, so the long word can break as "nedladdnings-center" in the big landing title.
+    center: "APS nedladdnings­center",
     centerDescription: "Ladda ner APS-appar för Android, iOS, Windows och macOS.",
     languageLabel: "Språk",
     appsLabel: "Appar",
@@ -244,7 +245,8 @@ const LOCALE = { en: "en", sv: "sv-SE", ar: "ar-u-nu-latn" };
 
 const fill = (template, values) => template.replace(/\{(\w+)\}/g, (_, key) => values[key] ?? "");
 const escapeHtml = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
-const stripTags = s => s.replace(/<[^>]+>/g, "");
+// For plain-text places like the tab title: no markup, and no soft hyphens (some browsers show those as a gap there).
+const stripTags = s => s.replace(/<[^>]+>/g, "").replace(/­/g, "");
 
 // Order: ?lang= in the link, then the visitor's earlier pick, then the browser's languages, then English.
 function pickLanguage() {
