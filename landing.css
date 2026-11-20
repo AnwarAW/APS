@@ -24,8 +24,6 @@
   /* Long single words (Swedish "nedladdningscenter") break at their soft hyphen, or anywhere as a last resort. */
   hyphens: manual; overflow-wrap: break-word;
 }
-[dir="rtl"] .landing h1 { letter-spacing: 0; }   /* Arabic letters must stay joined */
-
 /* App list: one row per app, the whole row links to its page */
 .app-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
 .app-row {

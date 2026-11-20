@@ -43,7 +43,7 @@ a { color: var(--primary); }
 
 /* Top bar: back link (app pages) and language switcher */
 .topbar { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 24px; min-height: 34px; }
-.back { display: inline-flex; align-items: center; gap: 6px; font-size: .92rem; font-weight: 600; text-decoration: none; }
+.back { display: inline-flex; white-space: nowrap; align-items: center; gap: 6px; font-size: .92rem; font-weight: 600; text-decoration: none; }
 .back:hover { text-decoration: underline; }
 .back svg { width: 18px; height: 18px; flex: none; }
 .languages { display: flex; gap: 4px; margin-inline-start: auto; }
@@ -58,6 +58,16 @@ a { color: var(--primary); }
 
 /* Arrows point the reading direction */
 [dir="rtl"] .flip { transform: scaleX(-1); }
+
+/* Arabic: the system's Arabic UI font (SF Arabic on Apple, Segoe UI on Windows, Noto on Android), a touch larger
+   than Latin text at the same size, with room for its tall letters and dots. Letter-spacing would break the joins
+   between letters, so it's off everywhere. `html[dir]` outweighs the per-page heading rules. */
+html[dir="rtl"] body {
+  font-family: system-ui, -apple-system, "SF Arabic", "Segoe UI", "Noto Sans Arabic", "Noto Naskh Arabic", Tahoma, sans-serif;
+  font-size: 17px; line-height: 1.75;
+}
+html[dir="rtl"] * { letter-spacing: 0 !important; }
+html[dir="rtl"] :is(h1, h2, h3, h4) { line-height: 1.4; }
 
 /* Page header */
 .hero { display: flex; align-items: center; gap: 18px; margin-bottom: 32px; }
