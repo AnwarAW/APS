@@ -117,28 +117,10 @@ const CHEVRON = `<svg class="chevron flip" viewBox="0 0 24 24" fill="none" strok
 const TEXT = {
   en: {
     dir: "ltr",
-    navApps: "Apps",
-    eyebrow: "Free apps for phones and computers",
-    landingLead: "All APS apps in one place. Pick an app, download it for your phone or computer, and start working.",
-    browseApps: "Browse apps",
-    highlightsLabel: "Highlights",
-    hl1Title: "Free", hl1Text: "Free to download.",
-    hl2Title: "No account", hl2Text: "Download straight away, no sign-up.",
-    hl3Title: "Every device", hl3Text: "Android, iOS, Windows and macOS.",
-    hl4Title: "Your language", hl4Text: "English, Swedish and Arabic.",
-    appsHeading: "Apps",
-    appsLead: "Open an app to see what it does and download it.",
-    viewApp: "View app",
-    stepsHeading: "Up and running in three steps",
-    step1Title: "Pick an app", step1Text: "Open it to see what it does.",
-    step2Title: "Download", step2Text: "Choose your device.",
-    step3Title: "Install and go", step3Text: "Open the file. The app's page explains each step.",
-    closingTitle: "Ready when you are",
     copyright: "© {year} Anwar Abdul Wahhab. All rights reserved.",
     center: "APS Download Center",
     centerDescription: "Download APS apps for Android, iOS, Windows and macOS.",
     languageLabel: "Language",
-    appsLabel: "Apps",
     downloadsLabel: "Downloads",
     allApps: "All apps",
     appTitle: "{app} · APS Download Center",
@@ -158,29 +140,11 @@ const TEXT = {
   },
   sv: {
     dir: "ltr",
-    navApps: "Appar",
-    eyebrow: "Gratis appar för telefoner och datorer",
-    landingLead: "Alla APS-appar på ett ställe. Välj en app, ladda ner den till telefonen eller datorn och sätt igång.",
-    browseApps: "Se apparna",
-    highlightsLabel: "Fördelar",
-    hl1Title: "Gratis", hl1Text: "Gratis att ladda ner.",
-    hl2Title: "Inget konto", hl2Text: "Ladda ner direkt, utan registrering.",
-    hl3Title: "Alla enheter", hl3Text: "Android, iOS, Windows och macOS.",
-    hl4Title: "Ditt språk", hl4Text: "Engelska, svenska och arabiska.",
-    appsHeading: "Appar",
-    appsLead: "Öppna en app för att se vad den gör och ladda ner den.",
-    viewApp: "Visa appen",
-    stepsHeading: "Igång i tre steg",
-    step1Title: "Välj en app", step1Text: "Öppna den för att se vad den gör.",
-    step2Title: "Ladda ner", step2Text: "Välj din enhet.",
-    step3Title: "Installera och kör", step3Text: "Öppna filen. Appens sida förklarar varje steg.",
-    closingTitle: "Redo när du är",
     copyright: "© {year} Anwar Abdul Wahhab. Alla rättigheter förbehållna.",
     // ­: a soft hyphen, so the long word can break as "nedladdnings-center" in the big landing title.
     center: "APS nedladdnings­center",
     centerDescription: "Ladda ner APS-appar för Android, iOS, Windows och macOS.",
     languageLabel: "Språk",
-    appsLabel: "Appar",
     downloadsLabel: "Nedladdningar",
     allApps: "Alla appar",
     appTitle: "{app} · APS nedladdningscenter",
@@ -200,28 +164,10 @@ const TEXT = {
   },
   ar: {
     dir: "rtl",
-    navApps: "التطبيقات",
-    eyebrow: "تطبيقات مجانية للهواتف والحواسيب",
-    landingLead: "كل تطبيقات <bdi>APS</bdi> في مكان واحد. اختر تطبيقًا، ونزّله على هاتفك أو حاسوبك، وابدأ العمل.",
-    browseApps: "تصفّح التطبيقات",
-    highlightsLabel: "المزايا",
-    hl1Title: "مجاني", hl1Text: "التنزيل مجاني.",
-    hl2Title: "بدون حساب", hl2Text: "نزّل مباشرة دون تسجيل.",
-    hl3Title: "كل أجهزتك", hl3Text: "<bdi>Android</bdi> و<bdi>iOS</bdi> و<bdi>Windows</bdi> و<bdi>macOS</bdi>.",
-    hl4Title: "بلغتك", hl4Text: "الإنجليزية والسويدية والعربية.",
-    appsHeading: "التطبيقات",
-    appsLead: "افتح تطبيقًا لترى ما يقدمه وتنزّله.",
-    viewApp: "عرض التطبيق",
-    stepsHeading: "ابدأ في ثلاث خطوات",
-    step1Title: "اختر تطبيقًا", step1Text: "افتحه لترى ما يقدمه.",
-    step2Title: "نزّله", step2Text: "اختر جهازك.",
-    step3Title: "ثبّت وابدأ", step3Text: "افتح الملف. صفحة التطبيق تشرح كل خطوة.",
-    closingTitle: "جاهز متى ما كنت جاهزًا",
     copyright: "© {year} أنور عبد الوهاب. جميع الحقوق محفوظة.",
     center: "مركز تنزيلات <bdi>APS</bdi>",
     centerDescription: "نزّل تطبيقات APS لأنظمة Android وiOS وWindows وmacOS.",
     languageLabel: "اللغة",
-    appsLabel: "التطبيقات",
     downloadsLabel: "التنزيلات",
     allApps: "كل التطبيقات",
     appTitle: "{app} · مركز تنزيلات APS",
@@ -297,28 +243,22 @@ function versionLine(app) {
 function renderList() {
   const t = TEXT[lang];
   document.title = stripTags(t.center);
-  document.querySelector(".highlights").setAttribute("aria-label", t.highlightsLabel);
-  const art = document.getElementById("center-art");
-  if (!art.firstElementChild) art.innerHTML = ART.center;   // drawn once; it has no text to translate
 
-  // Each app is one card linking to its page. The first is shown large, with its picture.
-  document.getElementById("app-list").innerHTML = APPS.map((app, i) => {
+  // One row per app, linking to its page: icon, name, tagline, platforms and the latest version.
+  document.getElementById("app-list").innerHTML = APPS.map(app => {
     const text = app.text[lang] || app.text.en;
     const chips = app.downloads.filter(shown).map(d => `<span class="chip">${PLATFORMS[d.platform].icon}<bdi>${PLATFORMS[d.platform].name}</bdi></span>`).join("");
     const version = versionLine(app);
-    const featured = i === 0;
     return `
-      <li${featured ? ` class="featured"` : ""}>
-        <a class="app-card" href="${withLang(app.id + "/")}">
-          <div class="app-card-body">
-            ${app.icon("app-card-icon")}
-            <h3><bdi>${escapeHtml(app.name)}</bdi></h3>
-            <p class="app-card-tagline">${text.tagline}</p>
-            <p class="app-facts">${chips}</p>
-            ${version ? `<p class="app-card-version">${version}</p>` : ""}
-            <span class="app-card-cta">${t.viewApp} ${CHEVRON}</span>
+      <li>
+        <a class="app-row" href="${withLang(app.id + "/")}">
+          ${app.icon("app-row-icon")}
+          <div class="app-row-body">
+            <h2><bdi>${escapeHtml(app.name)}</bdi></h2>
+            <p>${text.tagline}</p>
+            <p class="app-facts">${chips}${version ? `<span>${version}</span>` : ""}</p>
           </div>
-          ${featured && ART.hero[app.hero] ? `<div class="app-card-art">${ART.hero[app.hero]}</div>` : ""}
+          ${CHEVRON}
         </a>
       </li>`;
   }).join("");
